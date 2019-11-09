@@ -33,7 +33,13 @@ client.on("message", message => {
         outputs.push(`${degrees}°${unit} = ${degreesConv}°${unitConv}`);
     }
 
-    if (outputs.length > 0) message.channel.send(outputs.join("\n"));
+    if (outputs.length === 0) return;
+
+    const embed = new Discord.RichEmbed()
+        .setColor("#0099ff")
+        .setDescription(outputs.join("\n"));
+
+    message.channel.send(embed);
 });
 
 client.login(config.token);
