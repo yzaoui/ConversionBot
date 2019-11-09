@@ -30,7 +30,7 @@ client.on("message", message => {
 
         degreesConv = degreesConv.toFixed(1);
 
-        outputs.push(`${degrees}°${unit} = ${degreesConv}°${unitConv}`);
+        outputs.push(`${degrees}°${unit} → **${degreesConv}°${unitConv}**`);
     }
 
     if (outputs.length === 0) return;
