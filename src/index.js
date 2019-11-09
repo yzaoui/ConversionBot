@@ -9,7 +9,7 @@ client.on("ready", () => {
 client.on("message", message => {
     if (message.author.bot) return;
 
-    const results = message.content.matchAll(/\b(?<degrees>\d+(?:.\d+)?)[ °]?(?<unit>[FC])\b/gmi);
+    const results = message.content.matchAll(/\b(?<degrees>-?\d+(?:.\d+)?)[ °]?(?<unit>[FC])\b/gmi);
 
     const outputs = [];
 
