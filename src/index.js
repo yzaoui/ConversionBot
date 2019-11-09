@@ -36,6 +36,7 @@ client.on("message", message => {
     if (outputs.length === 0) return;
 
     const embed = new Discord.RichEmbed()
+        .setTitle("Temperature Conversion")
         .setColor("#0099ff")
         .setDescription(outputs.join("\n"));
 
