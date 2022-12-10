@@ -1,12 +1,19 @@
-const Discord = require("discord.js");
-const client = new Discord.Client();
+const { Client, GatewayIntentBits, EmbedBuilder } = require("discord.js");
+
+const client = new Client({
+    intents: [
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.MessageContent,
+    ]
+});
 const config = require("../config.json");
 
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag}`)
 });
 
-client.on("message", message => {
+client.on("messageCreate", message => {
     if (message.author.bot) return;
 
     const results = message.content.matchAll(/(?<degrees>-?\d+(?:.\d+)?)[ °]?(?<unit>[FC])\b/gmi);
@@ -35,12 +42,13 @@ client.on("message", message => {
 
     if (outputs.length === 0) return;
 
-    const embed = new Discord.RichEmbed()
+    const embed = new EmbedBuilder()
         .setTitle("Temperature Conversion")
         .setColor("#0099ff")
         .setDescription(outputs.join("\n"));
 
-    message.channel.send(embed);
+    const a = message.channel
+    message.channel.send({ embeds: [embed] });
 });
 
 client.login(config.token);
