@@ -7,7 +7,6 @@ const client = new Client({
         GatewayIntentBits.MessageContent,
     ]
 });
-const config = require("../config.json");
 
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag}`)
@@ -47,8 +46,7 @@ client.on("messageCreate", message => {
         .setColor("#0099ff")
         .setDescription(outputs.join("\n"));
 
-    const a = message.channel
     message.channel.send({ embeds: [embed] });
 });
 
-client.login(config.token);
+client.login(process.env.API_TOKEN);
